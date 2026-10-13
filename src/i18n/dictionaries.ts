@@ -74,6 +74,19 @@ const uz = {
     all: "Barcha yangiliklar",
     viewsLabel: "koʻrishlar",
   },
+  softPower: {
+    eyebrow: "Yumshoq kuch diplomatiyasi",
+    // One entry per sentence: each reveals as its own step.
+    title: ["Boy meros.", "Ochiq madaniyat.", "Keng imkoniyatlar."],
+    text: "Madaniyat, turizm, taʼlim, sport va raqamli sohalar orqali Oʻzbekistonning jahondagi obroʻsini oshiramiz.",
+    cta: { other: "{count} ta yoʻnalishni koʻrish" } as PluralForms,
+    photoAlt: {
+      "soft-registan": "Quyosh botishida Registon madrasasining peshtoqi va minoralari",
+      "soft-dance": "Atlas libosdagi oʻzbek raqqosasi",
+      "soft-plov": "Oʻzbek palovi",
+      "soft-lake": "Togʻlar orasidagi moviy koʻl",
+    },
+  },
 };
 
 export type Dictionary = typeof uz;
@@ -158,6 +171,18 @@ const dictionaries: Record<Locale, Dictionary> = {
       all: "Все новости",
       viewsLabel: "просмотров",
     },
+    softPower: {
+      eyebrow: "Дипломатия «мягкой силы»",
+      title: ["Богатое наследие.", "Открытая культура.", "Широкие возможности."],
+      text: "Повышаем авторитет Узбекистана в мире через культуру, туризм, образование, спорт и цифровые технологии.",
+      cta: { other: "Все направления ({count})" },
+      photoAlt: {
+        "soft-registan": "Портал медресе и минареты Регистана на закате",
+        "soft-dance": "Узбекская танцовщица в атласном наряде",
+        "soft-plov": "Узбекский плов",
+        "soft-lake": "Бирюзовое озеро среди гор",
+      },
+    },
   },
   en: {
     topBar: {
@@ -234,6 +259,18 @@ const dictionaries: Record<Locale, Dictionary> = {
       title: "Latest news",
       all: "All news",
       viewsLabel: "views",
+    },
+    softPower: {
+      eyebrow: "Soft power diplomacy",
+      title: ["Rich heritage.", "Open culture.", "Broad opportunities."],
+      text: "We raise Uzbekistan’s global standing through culture, tourism, education, sport and digital initiatives.",
+      cta: { other: "Explore all {count} areas" },
+      photoAlt: {
+        "soft-registan": "Madrasa portal and minarets of the Registan at sunset",
+        "soft-dance": "An Uzbek dancer in an atlas silk costume",
+        "soft-plov": "Uzbek plov",
+        "soft-lake": "A turquoise lake among the mountains",
+      },
     },
   },
 };
