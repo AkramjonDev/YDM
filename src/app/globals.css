@@ -8,8 +8,33 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-montserrat);
   --font-mono: var(--font-geist-mono);
+}
+
+/* Brand tokens */
+@theme {
+  --color-navy-950: #010f33;
+  --color-navy-900: #021c56;
+  --color-navy-800: #0a2a6e;
+  --color-navy-700: #173a85;
+
+  --color-brand-600: #0a6fd6;
+  --color-brand-500: #0a78e0;
+  --color-brand-400: #3b95ea;
+  --color-brand-100: #dcebfb;
+  --color-brand-50: #eef5fd;
+
+  --color-gold-600: #a8832f;
+  --color-gold-500: #c9a24a;
+  --color-gold-400: #d9b96c;
+  --color-gold-100: #f6eed9;
+
+  --color-mist: #f5f7fb;
+  --color-line: #e3e8f1;
+  --color-ink: #0e1a33;
+  --color-muted: #5b6782;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +47,33 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+/* Signature detail: short gold gradient rule. */
+@utility gold-rule {
+  background-image: linear-gradient(90deg, var(--color-gold-500), var(--color-gold-400));
+}
+
+/* Geometric girih overlay (8-point star lattice), white at ~6% opacity.
+   Apply to an absolutely positioned layer on dark backgrounds. */
+@utility pattern-girih {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.06' stroke-width='1.2'%3E%3Cpath d='M48 18 78 48 48 78 18 48Z'/%3E%3Cpath d='M27 27h42v42H27Z'/%3E%3Cpath d='M0 48h18M78 48h18M48 0v18M48 78v18M0 0l27 27M96 0 69 27M0 96l27-27M96 96 69 69'/%3E%3Ccircle cx='48' cy='48' r='9'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+}
+
+@theme {
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
 }

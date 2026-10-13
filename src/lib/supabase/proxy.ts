@@ -1,9 +1,18 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { isSupabaseConfigured } from "./config";
 
 // Refreshes the Supabase auth session on every request and guards /admin.
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
+
+  // Not connected yet: serve the public site, keep the admin area closed.
+  if (!isSupabaseConfigured) {
+    if (request.nextUrl.pathname.startsWith("/admin")) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+    return response;
+  }
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

@@ -1,0 +1,150 @@
+import type { Locale } from "./config";
+
+const uz = {
+  topBar: {
+    republic: "Oʻzbekiston Respublikasi",
+    centreName: "Oʻzbekiston Yoshlar Diplomatiya Markazi",
+    phone: "Telefon",
+    email: "Elektron pochta",
+  },
+  header: {
+    nav: {
+      about: "Markaz haqida",
+      departments: "Boʻlimlar",
+      softPower: "Yumshoq kuch",
+      news: "Yangiliklar",
+      events: "Tadbirlar",
+      media: "Media",
+      partners: "Hamkorlar",
+    },
+    cta: "Bogʻlanish",
+    mainNav: "Asosiy navigatsiya",
+    language: "Til",
+    contacts: "Aloqa",
+    openMenu: "Menyuni ochish",
+    closeMenu: "Menyuni yopish",
+    menu: "Menyu",
+  },
+  hero: {
+    eyebrow: "Oʻzbekiston Respublikasi",
+    title: "Yoshlar — yangi Oʻzbekiston diplomatiyasining kelajagi",
+    lead: "Markaz iqtidorli yoshlarni xalqaro munosabatlar, muzokara va jamoatchilik diplomatiyasi sohasida tayyorlaydi hamda Oʻzbekistonning dunyodagi ijobiy imijini mustahkamlaydi.",
+    primaryCta: "Boʻlimlar bilan tanishish",
+    secondaryCta: "Soʻnggi yangiliklar",
+    badge: "Bir meros — katta imkoniyatlar",
+    mainImageAlt: "Quyosh botayotgan paytda Samarqanddagi minoralar va moviy gumbazlar",
+    secondaryImageAlt:
+      "Oʻzbekiston bayrogʻini ushlab turgan ikki yosh qiz, ortida kechki Toshkent manzarasi",
+  },
+  stats: {
+    title: "Markaz raqamlarda",
+    items: {
+      departments: "ixtisoslashgan boʻlim",
+      regionalOffices: "hududiy vakolatxona",
+      members: "faol aʼzo va ishtirokchi",
+      partners: "xalqaro hamkor",
+    },
+  },
+};
+
+export type Dictionary = typeof uz;
+
+const dictionaries: Record<Locale, Dictionary> = {
+  uz,
+  ru: {
+    topBar: {
+      republic: "Республика Узбекистан",
+      centreName: "Центр молодёжной дипломатии Узбекистана",
+      phone: "Телефон",
+      email: "Электронная почта",
+    },
+    header: {
+      nav: {
+        about: "О центре",
+        departments: "Отделы",
+        softPower: "Мягкая сила",
+        news: "Новости",
+        events: "Мероприятия",
+        media: "Медиа",
+        partners: "Партнёры",
+      },
+      cta: "Связаться",
+      mainNav: "Основная навигация",
+      language: "Язык",
+      contacts: "Контакты",
+      openMenu: "Открыть меню",
+      closeMenu: "Закрыть меню",
+      menu: "Меню",
+    },
+    hero: {
+      eyebrow: "Республика Узбекистан",
+      title: "Молодёжь — будущее дипломатии нового Узбекистана",
+      lead: "Центр готовит талантливую молодёжь в сфере международных отношений, переговоров и публичной дипломатии и укрепляет положительный имидж Узбекистана в мире.",
+      primaryCta: "Познакомиться с отделами",
+      secondaryCta: "Последние новости",
+      badge: "Одно наследие — большие возможности",
+      mainImageAlt: "Минареты и голубые купола Самарканда на закате",
+      secondaryImageAlt:
+        "Две девушки держат флаг Узбекистана на фоне вечернего Ташкента",
+    },
+    stats: {
+      title: "Центр в цифрах",
+      items: {
+        departments: "профильных отделов",
+        regionalOffices: "региональных представительств",
+        members: "активных членов и участников",
+        partners: "международных партнёров",
+      },
+    },
+  },
+  en: {
+    topBar: {
+      republic: "Republic of Uzbekistan",
+      centreName: "Youth Diplomacy Centre of Uzbekistan",
+      phone: "Phone",
+      email: "Email",
+    },
+    header: {
+      nav: {
+        about: "About the Centre",
+        departments: "Departments",
+        softPower: "Soft power",
+        news: "News",
+        events: "Events",
+        media: "Media",
+        partners: "Partners",
+      },
+      cta: "Contact us",
+      mainNav: "Main navigation",
+      language: "Language",
+      contacts: "Contacts",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      menu: "Menu",
+    },
+    hero: {
+      eyebrow: "Republic of Uzbekistan",
+      title: "Youth — the future of New Uzbekistan’s diplomacy",
+      lead: "The Centre trains talented young people in international relations, negotiation and public diplomacy, and strengthens Uzbekistan’s positive image in the world.",
+      primaryCta: "Explore our departments",
+      secondaryCta: "Latest news",
+      badge: "One heritage — great opportunities",
+      mainImageAlt: "Minarets and blue domes of Samarkand at sunset",
+      secondaryImageAlt:
+        "Two young women holding the flag of Uzbekistan against the Tashkent skyline at dusk",
+    },
+    stats: {
+      title: "The Centre in numbers",
+      items: {
+        departments: "specialised departments",
+        regionalOffices: "regional offices",
+        members: "active members and participants",
+        partners: "international partners",
+      },
+    },
+  },
+};
+
+export function getDictionary(locale: Locale): Dictionary {
+  return dictionaries[locale];
+}

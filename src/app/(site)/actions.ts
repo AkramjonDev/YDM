@@ -1,5 +1,6 @@
 "use server";
 
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 
 export type ContactState = { ok: boolean; message: string } | null;
@@ -14,6 +15,10 @@ export async function submitLead(
 
   if (!name || !/^\S+@\S+\.\S+$/.test(email)) {
     return { ok: false, message: "Please enter your name and a valid email." };
+  }
+
+  if (!isSupabaseConfigured) {
+    return { ok: false, message: "The contact form is not available yet." };
   }
 
   const supabase = await createClient();
