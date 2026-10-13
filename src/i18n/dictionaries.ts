@@ -1,4 +1,5 @@
 import type { Locale } from "./config";
+import type { PluralForms } from "./plural";
 
 const uz = {
   topBar: {
@@ -44,6 +45,34 @@ const uz = {
       members: "faol aʼzo va ishtirokchi",
       partners: "xalqaro hamkor",
     },
+  },
+  about: {
+    eyebrow: "Biz haqimizda",
+    title: "Maqsadimiz — dunyo bilan muloqot qila oladigan yoshlar avlodi",
+    text: "Oʻzbekiston Yoshlar Diplomatiya Markazi — yoshlarni xalqaro munosabatlar, jamoatchilik diplomatiyasi va madaniyatlararo muloqot sohasida tayyorlovchi, ularning gʻoya va tashabbuslarini xalqaro maydonga olib chiquvchi platforma.",
+    more: "Batafsil",
+    mission: {
+      label: "Missiya",
+      text: "Bilimli, vatanparvar va dunyo bilan erkin muloqot qila oladigan yoshlarni tarbiyalash orqali Oʻzbekistonning xalqaro nufuzini mustahkamlash.",
+    },
+    vision: {
+      label: "Vizyon",
+      text: "Mintaqadagi yetakchi yoshlar diplomatiyasi markazi boʻlish va har bir hududdan xalqaro darajadagi yosh mutaxassislarni yetishtirish.",
+    },
+  },
+  departments: {
+    eyebrow: "Tuzilma",
+    title: { other: "Markazning {count} ta boʻlimi" } as PluralForms,
+    subtitle:
+      "Har bir boʻlim oʻz yoʻnalishida dasturlar, tadqiqotlar va xalqaro loyihalarni amalga oshiradi.",
+    all: "Boʻlimlar",
+    cardLink: "Boʻlimga oʻtish",
+  },
+  news: {
+    eyebrow: "Axborot xizmati",
+    title: "Soʻnggi yangiliklar",
+    all: "Barcha yangiliklar",
+    viewsLabel: "koʻrishlar",
   },
 };
 
@@ -96,6 +125,39 @@ const dictionaries: Record<Locale, Dictionary> = {
         partners: "международных партнёров",
       },
     },
+    about: {
+      eyebrow: "О нас",
+      title: "Наша цель — поколение молодёжи, способное вести диалог с миром",
+      text: "Центр молодёжной дипломатии Узбекистана — платформа, которая готовит молодёжь в сфере международных отношений, публичной дипломатии и межкультурного диалога и выводит её идеи и инициативы на международный уровень.",
+      more: "Подробнее",
+      mission: {
+        label: "Миссия",
+        text: "Укреплять международный авторитет Узбекистана, воспитывая образованную, патриотичную молодёжь, свободно ведущую диалог с миром.",
+      },
+      vision: {
+        label: "Видение",
+        text: "Стать ведущим центром молодёжной дипломатии в регионе и готовить молодых специалистов международного уровня из каждого региона страны.",
+      },
+    },
+    departments: {
+      eyebrow: "Структура",
+      title: {
+        one: "{count} отдел Центра",
+        few: "{count} отдела Центра",
+        many: "{count} отделов Центра",
+        other: "{count} отдела Центра",
+      },
+      subtitle:
+        "Каждый отдел реализует программы, исследования и международные проекты в своём направлении.",
+      all: "Все отделы",
+      cardLink: "Перейти в отдел",
+    },
+    news: {
+      eyebrow: "Пресс-служба",
+      title: "Последние новости",
+      all: "Все новости",
+      viewsLabel: "просмотров",
+    },
   },
   en: {
     topBar: {
@@ -141,6 +203,37 @@ const dictionaries: Record<Locale, Dictionary> = {
         members: "active members and participants",
         partners: "international partners",
       },
+    },
+    about: {
+      eyebrow: "About us",
+      title: "Our goal: a generation of young people who can engage with the world",
+      text: "The Youth Diplomacy Centre of Uzbekistan is a platform that trains young people in international relations, public diplomacy and intercultural dialogue, and brings their ideas and initiatives to the international stage.",
+      more: "Learn more",
+      mission: {
+        label: "Mission",
+        text: "To strengthen Uzbekistan’s international standing by raising knowledgeable, patriotic young people who can engage freely with the world.",
+      },
+      vision: {
+        label: "Vision",
+        text: "To become the region’s leading youth diplomacy centre and develop internationally competitive young professionals from every region of the country.",
+      },
+    },
+    departments: {
+      eyebrow: "Structure",
+      title: {
+        one: "The Centre’s {count} department",
+        other: "The Centre’s {count} departments",
+      },
+      subtitle:
+        "Each department runs programmes, research and international projects in its own field.",
+      all: "All departments",
+      cardLink: "View department",
+    },
+    news: {
+      eyebrow: "Press service",
+      title: "Latest news",
+      all: "All news",
+      viewsLabel: "views",
     },
   },
 };

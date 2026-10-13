@@ -67,13 +67,79 @@ body {
   background-size: 96px 96px;
 }
 
+/* Same lattice at full stroke strength: set the layer's opacity to tune it
+   (e.g. opacity-[0.07]), so it can change on hover. */
+@utility pattern-girih-line {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='white' stroke-width='1.2'%3E%3Cpath d='M48 18 78 48 48 78 18 48Z'/%3E%3Cpath d='M27 27h42v42H27Z'/%3E%3Cpath d='M0 48h18M78 48h18M48 0v18M48 78v18M0 0l27 27M96 0 69 27M0 96l27-27M96 96 69 69'/%3E%3Ccircle cx='48' cy='48' r='9'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+}
+
+/* Navy lattice for light backgrounds (mist/white). */
+@utility pattern-girih-dark {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23021c56' stroke-opacity='0.05' stroke-width='1.2'%3E%3Cpath d='M48 18 78 48 48 78 18 48Z'/%3E%3Cpath d='M27 27h42v42H27Z'/%3E%3Cpath d='M0 48h18M78 48h18M48 0v18M48 78v18M0 0l27 27M96 0 69 27M0 96l27-27M96 96 69 69'/%3E%3Ccircle cx='48' cy='48' r='9'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+}
+
+/* Inside a `group/card-link` card: matches while the card is hovered (pointer
+   devices) or keyboard-focused, so hover and focus share one set of styles. */
+@custom-variant card-on {
+  @media (hover: hover) {
+    &:is(:where(.group\/card-link):hover *) {
+      @slot;
+    }
+  }
+  &:is(:where(.group\/card-link):focus-visible *) {
+    @slot;
+  }
+}
+
 @theme {
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Damped spring (~16% overshoot), for small pop-in details. */
+  --ease-spring: linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1);
+
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  /* One 96px tile per loop, so the pattern drifts seamlessly. */
+  --animate-girih-drift: girih-drift 60s linear infinite;
+  --animate-needle-wobble: needle-wobble 0.9s ease-in-out;
+  --animate-cover-float: cover-float 4s ease-in-out infinite;
+  /* Pair with a 200% background-size so there is room to shift. */
+  --animate-cover-shift: cover-shift 12s ease-in-out infinite alternate;
 
   @keyframes fade-up {
     from {
       opacity: 0;
       transform: translateY(18px);
+    }
+  }
+
+  @keyframes girih-drift {
+    to {
+      background-position: 96px 96px;
+    }
+  }
+
+  @keyframes cover-float {
+    25% {
+      translate: 0 -4px;
+    }
+    75% {
+      translate: 0 4px;
+    }
+  }
+
+  @keyframes cover-shift {
+    to {
+      background-position: 100% 100%;
+    }
+  }
+
+  @keyframes needle-wobble {
+    30% {
+      rotate: 15deg;
+    }
+    65% {
+      rotate: -15deg;
     }
   }
 }

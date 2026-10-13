@@ -15,7 +15,7 @@ export function getNavEntries(labels: HeaderLabels): NavEntry[] {
   return [
     { kind: "link", href: "/about", label: nav.about },
     { kind: "departments", label: nav.departments },
-    { kind: "link", href: "/soft-power", label: nav.softPower },
+    { kind: "link", href: departmentHref("yumshoq-kuch"), label: nav.softPower },
     { kind: "link", href: "/news", label: nav.news },
     { kind: "link", href: "/events", label: nav.events },
     { kind: "link", href: "/media", label: nav.media },

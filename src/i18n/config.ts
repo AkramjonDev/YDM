@@ -15,3 +15,6 @@ export const localeNames: Record<Locale, string> = {
 export function isLocale(value: unknown): value is Locale {
   return typeof value === "string" && (locales as readonly string[]).includes(value);
 }
+
+// A value per locale, e.g. a translated title.
+export type Localized<T = string> = Record<Locale, T>;
