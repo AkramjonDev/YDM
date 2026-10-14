@@ -3,6 +3,7 @@
 import { Fragment, useLayoutEffect, useRef, type CSSProperties } from "react";
 
 type Props = {
+  as?: "h1" | "h2";
   id?: string;
   // A string reveals line by line, following the real wrapping. An array
   // (e.g. sentences) reveals one item per step, however the items wrap.
@@ -16,7 +17,7 @@ type Props = {
 // each carries its step index (--line): measured after layout for a string,
 // taken from the item index for an array, so it works in every language and
 // at every width.
-export function SplitHeading({ id, text, stepMs = 80, className }: Props) {
+export function SplitHeading({ as: Heading = "h2", id, text, stepMs = 80, className }: Props) {
   const ref = useRef<HTMLHeadingElement>(null);
   const grouped = Array.isArray(text);
 
@@ -47,7 +48,7 @@ export function SplitHeading({ id, text, stepMs = 80, className }: Props) {
   );
 
   return (
-    <h2
+    <Heading
       ref={ref}
       id={id}
       style={{ "--step-ms": `${stepMs}ms` } as CSSProperties}
@@ -69,6 +70,6 @@ export function SplitHeading({ id, text, stepMs = 80, className }: Props) {
           </span>
         </Fragment>
       ))}
-    </h2>
+    </Heading>
   );
 }

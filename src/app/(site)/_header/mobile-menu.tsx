@@ -123,7 +123,7 @@ export function MobileMenu({
           <ul className="space-y-1">
             {entries.map((entry) => {
               if (entry.kind === "departments") {
-                const sectionActive = pathname.startsWith("/departments/");
+                const sectionActive = isActive(pathname, "/departments");
                 return (
                   <li key="departments">
                     <button
@@ -233,7 +233,7 @@ export function MobileMenu({
 function rowClass(active: boolean) {
   return `relative flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base font-medium transition-colors hover:bg-mist ${
     active
-      ? "bg-brand-50 text-navy-900 before:absolute before:inset-y-2.5 before:left-0 before:w-1 before:rounded-full before:bg-gold-500"
+      ? "bg-brand-50 text-brand-600 before:absolute before:inset-y-2.5 before:left-0 before:w-1 before:rounded-full before:bg-gold-500"
       : "text-navy-900"
   }`;
 }

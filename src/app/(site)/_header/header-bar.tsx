@@ -4,11 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import type { Locale } from "@/i18n/config";
-import { ActiveRule, DepartmentsDropdown } from "./departments-dropdown";
+import { DepartmentsDropdown } from "./departments-dropdown";
 import { MenuIcon } from "./icons";
 import { Logo } from "./logo";
 import { MobileMenu } from "./mobile-menu";
 import { CTA_HREF, getNavEntries, isActive, type DepartmentLink, type HeaderLabels } from "./nav";
+import { useNavIndicator } from "./use-nav-indicator";
 
 type Props = {
   locale: Locale;
@@ -37,6 +38,7 @@ export function HeaderBar({ locale, labels, departments }: Props) {
   const burgerRef = useRef<HTMLButtonElement>(null);
   const menuId = useId();
   const entries = getNavEntries(labels);
+  const { listRef: navListRef, barRef: navBarRef } = useNavIndicator(pathname);
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -67,7 +69,13 @@ export function HeaderBar({ locale, labels, departments }: Props) {
         <Logo className="h-11 w-auto lg:h-12 xl:h-14" />
 
         <nav aria-label={labels.mainNav} className="hidden lg:block">
-          <ul className="flex items-center xl:gap-1">
+          <ul ref={navListRef} className="relative flex items-center xl:gap-1">
+            {/* Active-page underline; useNavIndicator slides it between items. */}
+            <span
+              ref={navBarRef}
+              aria-hidden
+              className="pointer-events-none absolute bottom-0.5 left-0 h-0.5 rounded-full bg-gold-500 opacity-0 duration-300 ease-reveal motion-reduce:transition-none"
+            />
             {entries.map((entry) =>
               entry.kind === "departments" ? (
                 <li key="departments">
@@ -130,10 +138,12 @@ function DesktopLink({ href, label, active }: { href: string; label: string; act
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className="relative inline-flex h-10 items-center whitespace-nowrap rounded-md px-2 text-sm font-medium text-navy-900 transition-colors hover:text-brand-600 xl:px-3 xl:text-[15px]"
+      data-nav-active={active || undefined}
+      className={`relative inline-flex h-10 items-center whitespace-nowrap rounded-md px-2 text-sm font-medium transition-colors hover:text-brand-600 xl:px-3 xl:text-[15px] ${
+        active ? "text-brand-600" : "text-navy-900"
+      }`}
     >
-      {label}
-      <ActiveRule active={active} />
+      <span data-nav-label>{label}</span>
     </Link>
   );
 }

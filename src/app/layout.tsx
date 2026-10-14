@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Oʻzbekiston Yoshlar Diplomatiya Markazi",
-    template: "%s | YDM",
+    template: "%s — Yoshlar Diplomatiya Markazi",
   },
   description:
     "Yoshlarni xalqaro munosabatlar va jamoatchilik diplomatiyasi sohasida tayyorlovchi, Oʻzbekistonning ijobiy imijini dunyoga tanituvchi markaz.",

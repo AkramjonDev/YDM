@@ -22,6 +22,11 @@ const TEXT_STAGGER_MS = 80;
 
 const newsHref = (slug: string) => `/news/${slug}`;
 
+// Grid item around a <NewsCard> inside a <RevealGrid>: fades, rises and
+// settles from 0.97×, 100ms apart per column.
+export const newsGridItemClass =
+  "group/reveal ease-reveal [transition-delay:calc(var(--col,0)*100ms)] motion-safe:transition-[opacity,translate,scale] motion-safe:duration-700 motion-safe:data-[state=idle]:translate-y-8 motion-safe:data-[state=idle]:scale-97 motion-safe:data-[state=idle]:opacity-0";
+
 const cardClass =
   "group/card-link overflow-hidden rounded-2xl border border-line bg-white transition-[translate,box-shadow] duration-300 hover:shadow-[0_24px_48px_-24px_rgb(2_28_86/0.3)] focus-visible:shadow-[0_24px_48px_-24px_rgb(2_28_86/0.3)] motion-safe:hover:-translate-y-1.5 motion-safe:focus-visible:-translate-y-1.5";
 
@@ -56,7 +61,7 @@ export async function News() {
               key={item.id}
               data-state="idle"
               // Two columns between 768 and 1023px: the third card waits for lg.
-              className={`group/reveal ease-reveal [transition-delay:calc(var(--col,0)*100ms)] motion-safe:transition-[opacity,translate,scale] motion-safe:duration-700 motion-safe:data-[state=idle]:translate-y-8 motion-safe:data-[state=idle]:scale-97 motion-safe:data-[state=idle]:opacity-0 ${
+              className={`${newsGridItemClass} ${
                 i === 2 ? "md:max-lg:hidden" : ""
               }`}
             >
@@ -120,7 +125,7 @@ function FeaturedCard({ item, locale, labels }: { item: NewsItem; locale: Locale
   );
 }
 
-function NewsCard({ item, locale, labels }: { item: NewsItem; locale: Locale; labels: Labels }) {
+export function NewsCard({ item, locale, labels }: { item: NewsItem; locale: Locale; labels: Labels }) {
   const department = getDepartment(item.department_id);
   const ids = textIds(item);
 

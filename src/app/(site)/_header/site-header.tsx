@@ -2,7 +2,6 @@ import { departments } from "@/data/departments";
 import { getDictionary } from "@/i18n/dictionaries";
 import { getLocale } from "@/i18n/get-locale";
 import { HeaderBar } from "./header-bar";
-import { HtmlLang } from "./html-lang";
 import { Logo } from "./logo";
 import { TopBar } from "./top-bar";
 
@@ -15,7 +14,6 @@ export async function SiteHeader() {
 
   return (
     <>
-      <HtmlLang locale={locale} />
       <TopBar locale={locale} labels={topBar} languageLabel={header.language} />
       <HeaderBar
         locale={locale}

@@ -108,6 +108,11 @@ const uz = {
     hours: "Ish vaqti",
     copyright: "© {year} Oʻzbekiston Yoshlar Diplomatiya Markazi. Barcha huquqlar himoyalangan.",
   },
+  page: {
+    home: "Bosh sahifa",
+    breadcrumb: "Sahifa yoʻli",
+    comingSoon: "Tez orada",
+  },
 };
 
 export type Dictionary = typeof uz;
@@ -230,6 +235,11 @@ const dictionaries: Record<Locale, Dictionary> = {
       hours: "Часы работы",
       copyright: "© {year} Центр молодёжной дипломатии Узбекистана. Все права защищены.",
     },
+    page: {
+      home: "Главная",
+      breadcrumb: "Навигационная цепочка",
+      comingSoon: "Скоро",
+    },
   },
   en: {
     topBar: {
@@ -339,6 +349,11 @@ const dictionaries: Record<Locale, Dictionary> = {
       address: "Address",
       hours: "Working hours",
       copyright: "© {year} Youth Diplomacy Centre of Uzbekistan. All rights reserved.",
+    },
+    page: {
+      home: "Home",
+      breadcrumb: "Breadcrumb",
+      comingSoon: "Coming soon",
     },
   },
 };

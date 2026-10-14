@@ -108,7 +108,13 @@ body {
   --animate-girih-drift: girih-drift 60s linear infinite;
   --animate-needle-wobble: needle-wobble 0.9s ease-in-out;
   --animate-cover-float: cover-float 4s ease-in-out infinite;
+  --animate-breathe: breathe 4s ease-in-out infinite;
+  --animate-drift: drift 8s ease-in-out infinite;
+  /* Two pulses of a ring in the element's --dir colour (hash landing). */
+  --animate-hash-pulse: hash-pulse 0.8s ease-in-out 2;
   --animate-nudge: nudge 2.5s ease-in-out infinite;
+  /* Page content entering on navigation (see (site)/template.tsx). */
+  --animate-page-in: page-in 0.3s ease-out;
   /* Track holds the list twice; set --marquee-duration from the item count. */
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
   --animate-pulse-dot: pulse-dot 1.6s ease-out infinite;
@@ -129,12 +135,41 @@ body {
     }
   }
 
+  @keyframes drift {
+    33% {
+      translate: 6px -6px;
+    }
+    66% {
+      translate: -6px 4px;
+    }
+  }
+
+  @keyframes hash-pulse {
+    50% {
+      box-shadow: 0 0 0 4px var(--dir);
+      scale: 1.02;
+    }
+  }
+
+  @keyframes breathe {
+    50% {
+      opacity: 0.5;
+    }
+  }
+
   @keyframes cover-float {
     25% {
       translate: 0 -4px;
     }
     75% {
       translate: 0 4px;
+    }
+  }
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      translate: 0 8px;
     }
   }
 

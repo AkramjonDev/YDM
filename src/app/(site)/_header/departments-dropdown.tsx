@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ChevronDownIcon } from "./icons";
-import { departmentHref, type DepartmentLink } from "./nav";
+import { departmentHref, isActive, type DepartmentLink } from "./nav";
 import { useDropdown } from "./use-dropdown";
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 export function DepartmentsDropdown({ label, departments, pathname }: Props) {
   const { open, close, toggle, rootRef, buttonRef, panelId, onKeyDown } = useDropdown();
-  const active = pathname.startsWith("/departments/");
+  const active = isActive(pathname, "/departments");
 
   return (
     <div ref={rootRef} onKeyDown={onKeyDown} className="relative">
@@ -23,15 +23,17 @@ export function DepartmentsDropdown({ label, departments, pathname }: Props) {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={toggle}
-        className="relative inline-flex h-10 items-center gap-1 whitespace-nowrap rounded-md px-2 text-sm font-medium text-navy-900 transition-colors hover:text-brand-600 xl:px-3 xl:text-[15px]"
+        data-nav-active={active || undefined}
+        className={`relative inline-flex h-10 items-center gap-1 whitespace-nowrap rounded-md px-2 text-sm font-medium transition-colors hover:text-brand-600 xl:px-3 xl:text-[15px] ${
+          active ? "text-brand-600" : "text-navy-900"
+        }`}
       >
-        {label}
+        <span data-nav-label>{label}</span>
         <ChevronDownIcon
           className={`size-4 transition-transform duration-200 motion-reduce:transition-none ${
             open ? "rotate-180" : ""
           }`}
         />
-        <ActiveRule active={active} />
       </button>
 
       <div
@@ -71,17 +73,5 @@ export function DepartmentsDropdown({ label, departments, pathname }: Props) {
         </ul>
       </div>
     </div>
-  );
-}
-
-// Gold underline marking the active desktop nav item.
-export function ActiveRule({ active }: { active: boolean }) {
-  return (
-    <span
-      aria-hidden
-      className={`gold-rule pointer-events-none absolute inset-x-2 bottom-0.5 h-0.5 origin-left rounded-full transition-transform duration-300 motion-reduce:transition-none xl:inset-x-3 ${
-        active ? "scale-x-100" : "scale-x-0"
-      }`}
-    />
   );
 }
