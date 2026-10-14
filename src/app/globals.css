@@ -80,6 +80,11 @@ body {
   background-size: 96px 96px;
 }
 
+/* Fades a full-bleed track out at both screen edges. */
+@utility marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
 /* Inside a `group/card-link` card: matches while the card is hovered (pointer
    devices) or keyboard-focused, so hover and focus share one set of styles. */
 @custom-variant card-on {
@@ -104,6 +109,9 @@ body {
   --animate-needle-wobble: needle-wobble 0.9s ease-in-out;
   --animate-cover-float: cover-float 4s ease-in-out infinite;
   --animate-nudge: nudge 2.5s ease-in-out infinite;
+  /* Track holds the list twice; set --marquee-duration from the item count. */
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-pulse-dot: pulse-dot 1.6s ease-out infinite;
   --animate-ken-burns: ken-burns 20s ease-in-out infinite alternate;
   /* Pair with a 200% background-size so there is room to shift. */
   --animate-cover-shift: cover-shift 12s ease-in-out infinite alternate;
@@ -127,6 +135,23 @@ body {
     }
     75% {
       translate: 0 4px;
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      translate: -50% 0;
+    }
+  }
+
+  @keyframes pulse-dot {
+    from {
+      scale: 1;
+      opacity: 0.7;
+    }
+    to {
+      scale: 1.8;
+      opacity: 0;
     }
   }
 

@@ -23,6 +23,14 @@ export function getNavEntries(labels: HeaderLabels): NavEntry[] {
   ];
 }
 
+// Flat page links (no departments menu) plus the contact CTA, e.g. for the footer.
+export function getSiteLinks(labels: HeaderLabels): { href: string; label: string }[] {
+  const links = getNavEntries(labels).flatMap((entry) =>
+    entry.kind === "link" ? [{ href: entry.href, label: entry.label }] : [],
+  );
+  return [...links, { href: CTA_HREF, label: labels.cta }];
+}
+
 export function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);

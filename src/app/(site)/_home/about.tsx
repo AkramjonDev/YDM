@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { about, type AboutCard } from "@/data/about";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
 import { getLocale } from "@/i18n/get-locale";
-import { ArrowRightIcon, CompassIcon, TargetIcon } from "../_header/icons";
+import { CompassIcon, TargetIcon } from "../_header/icons";
 import { Eyebrow } from "./eyebrow";
 import { Reveal } from "./reveal";
+import { PillLink } from "./section-header";
 import { SplitHeading } from "./split-heading";
 
 const CARD_STAGGER_MS = 150;
@@ -35,7 +35,7 @@ export async function About() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="scroll-mt-24 bg-white pb-[72px] sm:pb-24 lg:scroll-mt-32 lg:pb-[120px] lg:pt-2"
+      className="scroll-mt-24 overflow-x-clip bg-white pb-[72px] sm:pb-24 lg:scroll-mt-32 lg:pb-[120px] lg:pt-2"
     >
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:gap-14 sm:px-6 lg:grid-cols-[minmax(0,45fr)_minmax(0,50fr)] lg:items-start lg:gap-16 xl:gap-20">
         <Reveal>
@@ -57,13 +57,7 @@ export async function About() {
           <div
             className="mt-10 ease-reveal motion-safe:transition-[opacity,translate] motion-safe:delay-450 motion-safe:duration-600 motion-safe:group-data-[state=idle]/reveal:translate-y-4 motion-safe:group-data-[state=idle]/reveal:opacity-0"
           >
-            <Link
-              href={about.href}
-              className="group/more inline-flex h-12 items-center gap-2 rounded-full border border-line px-6 font-semibold text-navy-900 transition-colors duration-300 hover:border-navy-900"
-            >
-              {t.more}
-              <ArrowRightIcon className="size-5 transition-[translate] duration-300 motion-safe:group-hover/more:translate-x-1" />
-            </Link>
+            <PillLink href={about.href}>{t.more}</PillLink>
           </div>
         </Reveal>
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Locale } from "@/i18n/config";
+import { formatNumber } from "@/i18n/format";
 
 type Item = { value: number; suffix: string; label: string };
 
@@ -16,8 +17,9 @@ const EASE = "cubic-bezier(0.22,1,0.36,1)";
 
 const easeOutQuart = (t: number) => 1 - (1 - t) ** 4;
 
+// Same formatting as the rest of the site (see formatNumber).
 function formatter(locale: Locale) {
-  return new Intl.NumberFormat(locale, { useGrouping: "always" });
+  return { format: (value: number) => formatNumber(locale, value) };
 }
 
 // Cell borders for a 2×2 grid below 1024px and a single row above it.

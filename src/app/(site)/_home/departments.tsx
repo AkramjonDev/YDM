@@ -6,13 +6,10 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { getLocale } from "@/i18n/get-locale";
 import { plural } from "@/i18n/plural";
-import { ArrowRightIcon } from "../_header/icons";
 import { departmentHref } from "../_header/nav";
 import { departmentIcons } from "./department-icons";
-import { Eyebrow } from "./eyebrow";
-import { Reveal } from "./reveal";
 import { RevealGrid } from "./reveal-grid";
-import { SplitHeading } from "./split-heading";
+import { SectionHeader } from "./section-header";
 
 // Target of the hero's "Explore our departments" button. Reads the locale
 // cookie, so render it inside <Suspense> (Cache Components).
@@ -29,30 +26,15 @@ export async function Departments() {
       <div aria-hidden className="pattern-girih-dark absolute inset-0 -z-10" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <Reveal className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-12">
-          <div>
-            <Eyebrow className="text-gold-600">{t.eyebrow}</Eyebrow>
-            <SplitHeading
-              id="departments-title"
-              text={plural(locale, departments.length, t.title)}
-              className="mt-6 font-display text-[2rem] font-extrabold leading-[1.2] tracking-tight text-navy-900 sm:text-4xl lg:text-[44px]"
-            />
-            <p className="mt-5 max-w-[560px] text-[17px] leading-[1.7] text-muted ease-reveal motion-safe:transition-[opacity,translate] motion-safe:delay-300 motion-safe:duration-600 sm:text-lg motion-safe:group-data-[state=idle]/reveal:translate-y-4 motion-safe:group-data-[state=idle]/reveal:opacity-0">
-              {t.subtitle}
-            </p>
-          </div>
-
-          {/* Reveal on the wrapper so the link's hover transitions stay undelayed. */}
-          <div className="shrink-0 ease-reveal motion-safe:transition-[opacity,translate] motion-safe:delay-450 motion-safe:duration-600 motion-safe:group-data-[state=idle]/reveal:translate-y-4 motion-safe:group-data-[state=idle]/reveal:opacity-0">
-            <Link
-              href="/departments"
-              className="group/more inline-flex h-12 items-center gap-2 rounded-full border border-line bg-white px-6 font-semibold text-navy-900 transition-colors duration-300 hover:border-navy-900"
-            >
-              {t.all}
-              <ArrowRightIcon className="size-5 transition-[translate] duration-300 motion-safe:group-hover/more:translate-x-1" />
-            </Link>
-          </div>
-        </Reveal>
+        <SectionHeader
+          eyebrow={t.eyebrow}
+          title={plural(locale, departments.length, t.title)}
+          titleId="departments-title"
+          titleSize="lg:text-[44px]"
+          action={{ href: "/departments", label: t.all }}
+        >
+          {t.subtitle}
+        </SectionHeader>
 
         <RevealGrid className="mt-12 grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {departments.map((department, i) => (

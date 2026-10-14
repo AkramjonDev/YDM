@@ -21,16 +21,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "YDM",
+    default: "Oʻzbekiston Yoshlar Diplomatiya Markazi",
     template: "%s | YDM",
   },
-  description: "YDM — landing page and admin panel built with Next.js and Supabase.",
+  description:
+    "Yoshlarni xalqaro munosabatlar va jamoatchilik diplomatiyasi sohasida tayyorlovchi, Oʻzbekistonning ijobiy imijini dunyoga tanituvchi markaz.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="uz"
       className={`${inter.variable} ${montserrat.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

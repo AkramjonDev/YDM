@@ -87,6 +87,27 @@ const uz = {
       "soft-lake": "Togʻlar orasidagi moviy koʻl",
     },
   },
+  events: {
+    eyebrow: "Kalendar",
+    title: "Yaqinlashayotgan tadbirlar",
+    all: "Barcha tadbirlar",
+    daysLeft: { other: "{count} kun qoldi" } as PluralForms,
+    today: "Bugun",
+    empty: "Yaqin orada tadbirlar yoʻq",
+  },
+  partners: {
+    title: "Hamkorlarimiz",
+  },
+  footer: {
+    about:
+      "Yoshlarni xalqaro munosabatlar va jamoatchilik diplomatiyasi sohasida tayyorlovchi, Oʻzbekistonning ijobiy imijini dunyoga tanituvchi markaz.",
+    departments: "Boʻlimlar",
+    site: "Sayt",
+    contact: "Bogʻlanish",
+    address: "Manzil",
+    hours: "Ish vaqti",
+    copyright: "© {year} Oʻzbekiston Yoshlar Diplomatiya Markazi. Barcha huquqlar himoyalangan.",
+  },
 };
 
 export type Dictionary = typeof uz;
@@ -183,6 +204,32 @@ const dictionaries: Record<Locale, Dictionary> = {
         "soft-lake": "Бирюзовое озеро среди гор",
       },
     },
+    events: {
+      eyebrow: "Календарь",
+      title: "Предстоящие мероприятия",
+      all: "Все мероприятия",
+      daysLeft: {
+        one: "Остался {count} день",
+        few: "Осталось {count} дня",
+        many: "Осталось {count} дней",
+        other: "Осталось {count} дня",
+      },
+      today: "Сегодня",
+      empty: "Ближайших мероприятий нет",
+    },
+    partners: {
+      title: "Наши партнёры",
+    },
+    footer: {
+      about:
+        "Центр, который готовит молодёжь в сфере международных отношений и публичной дипломатии и продвигает позитивный имидж Узбекистана в мире.",
+      departments: "Отделы",
+      site: "Сайт",
+      contact: "Контакты",
+      address: "Адрес",
+      hours: "Часы работы",
+      copyright: "© {year} Центр молодёжной дипломатии Узбекистана. Все права защищены.",
+    },
   },
   en: {
     topBar: {
@@ -271,6 +318,27 @@ const dictionaries: Record<Locale, Dictionary> = {
         "soft-plov": "Uzbek plov",
         "soft-lake": "A turquoise lake among the mountains",
       },
+    },
+    events: {
+      eyebrow: "Calendar",
+      title: "Upcoming events",
+      all: "All events",
+      daysLeft: { one: "{count} day left", other: "{count} days left" },
+      today: "Today",
+      empty: "No upcoming events",
+    },
+    partners: {
+      title: "Our partners",
+    },
+    footer: {
+      about:
+        "A centre that trains young people in international relations and public diplomacy and promotes a positive image of Uzbekistan worldwide.",
+      departments: "Departments",
+      site: "Site",
+      contact: "Contact",
+      address: "Address",
+      hours: "Working hours",
+      copyright: "© {year} Youth Diplomacy Centre of Uzbekistan. All rights reserved.",
     },
   },
 };

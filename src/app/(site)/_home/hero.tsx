@@ -4,6 +4,7 @@ import { heroImages } from "@/data/site";
 import { getDictionary } from "@/i18n/dictionaries";
 import { getLocale } from "@/i18n/get-locale";
 import { ArrowRightIcon } from "../_header/icons";
+import { Eyebrow } from "./eyebrow";
 
 const sectionClass =
   "relative isolate overflow-hidden bg-linear-to-br from-navy-900 to-navy-950";
@@ -19,10 +20,9 @@ export async function Hero() {
 
       <div className="mx-auto grid max-w-7xl gap-14 px-4 pb-56 pt-14 sm:px-6 sm:pb-60 sm:pt-20 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-12 lg:pb-56 lg:pt-24 xl:gap-16">
         <div>
-          <p className="flex animate-fade-up items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-gold-500 motion-reduce:animate-none sm:text-sm">
-            <span aria-hidden className="gold-rule h-0.5 w-10 shrink-0 rounded-full" />
+          <Eyebrow className="animate-fade-up text-gold-500 motion-reduce:animate-none">
             {hero.eyebrow}
-          </p>
+          </Eyebrow>
 
           <h1
             id="hero-title"
@@ -59,7 +59,8 @@ export async function Hero() {
                 src={heroImages.main}
                 alt={hero.mainImageAlt}
                 fill
-                priority
+                loading="eager"
+                fetchPriority="high"
                 sizes="(min-width: 1024px) 40vw, (min-width: 640px) 400px, 78vw"
                 className="object-cover"
               />
@@ -69,6 +70,7 @@ export async function Hero() {
                 src={heroImages.secondary}
                 alt={hero.secondaryImageAlt}
                 fill
+                loading="eager"
                 sizes="(min-width: 1024px) 24vw, (min-width: 640px) 240px, 46vw"
                 className="object-cover"
               />
@@ -90,10 +92,12 @@ export async function Hero() {
   );
 }
 
-// Static shell shown until the locale-aware hero streams in.
+// Static shell shown until the locale-aware hero streams in. At least a screen
+// tall, so the footer (which often streams in first) starts below the fold and
+// is not pushed down in view when the page content arrives.
 export function HeroFallback() {
   return (
-    <section aria-hidden className={`${sectionClass} min-h-[880px] lg:min-h-[640px]`}>
+    <section aria-hidden className={`${sectionClass} min-h-[max(880px,100svh)] lg:min-h-[max(640px,100svh)]`}>
       <div className="pattern-girih absolute inset-0 -z-10" />
     </section>
   );

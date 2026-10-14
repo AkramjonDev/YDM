@@ -7,13 +7,12 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
 import { formatDate, formatNumber } from "@/i18n/format";
 import { getLocale } from "@/i18n/get-locale";
-import { ArrowRightIcon } from "../_header/icons";
-import { Eyebrow } from "./eyebrow";
+import { DepartmentBadge } from "./department-badge";
 import { FadeImage } from "./fade-image";
 import { NewsCover } from "./news-cover";
 import { Reveal } from "./reveal";
 import { RevealGrid } from "./reveal-grid";
-import { SplitHeading } from "./split-heading";
+import { SectionHeader } from "./section-header";
 
 type Labels = Dictionary["news"];
 
@@ -41,26 +40,13 @@ export async function News() {
       className="scroll-mt-18 bg-white py-[72px] sm:py-24 lg:scroll-mt-25 lg:py-[110px]"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <Reveal className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-12">
-          <div>
-            <Eyebrow className="text-gold-600">{t.eyebrow}</Eyebrow>
-            <SplitHeading
-              id="news-title"
-              text={t.title}
-              className="mt-6 font-display text-[2rem] font-extrabold leading-[1.2] tracking-tight text-navy-900 sm:text-4xl lg:text-[40px]"
-            />
-          </div>
-
-          <div className="shrink-0 ease-reveal motion-safe:transition-[opacity,translate] motion-safe:delay-300 motion-safe:duration-600 motion-safe:group-data-[state=idle]/reveal:translate-y-4 motion-safe:group-data-[state=idle]/reveal:opacity-0">
-            <Link
-              href="/news"
-              className="group/more inline-flex h-12 items-center gap-2 rounded-full border border-line bg-white px-6 font-semibold text-navy-900 transition-colors duration-300 hover:border-navy-900"
-            >
-              {t.all}
-              <ArrowRightIcon className="size-5 transition-[translate] duration-300 motion-safe:group-hover/more:translate-x-1" />
-            </Link>
-          </div>
-        </Reveal>
+        <SectionHeader
+          eyebrow={t.eyebrow}
+          title={t.title}
+          titleId="news-title"
+          titleSize="lg:text-[40px]"
+          action={{ href: "/news", label: t.all }}
+        />
 
         <FeaturedCard item={featured} locale={locale} labels={t} />
 
@@ -110,7 +96,7 @@ function FeaturedCard({ item, locale, labels }: { item: NewsItem; locale: Locale
 
         <div className="flex flex-col p-7 sm:p-10">
           <Stagger step={0}>
-            <Badge department={department} locale={locale} />
+            <DepartmentBadge department={department} locale={locale} />
           </Stagger>
           <Stagger step={1} className="mt-4">
             <h3
@@ -155,7 +141,7 @@ function NewsCard({ item, locale, labels }: { item: NewsItem; locale: Locale; la
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <Badge department={department} locale={locale} />
+        <DepartmentBadge department={department} locale={locale} />
         <h3
           id={ids.title}
           className="mt-3 line-clamp-3 font-display text-[17px] font-bold leading-[1.35] text-navy-900 transition-colors duration-300 card-on:text-brand-600"
@@ -195,16 +181,6 @@ function Media({
         <NewsCover department={department} />
       )}
     </div>
-  );
-}
-
-// Department pill. Expects `--dept` from the enclosing card.
-function Badge({ department, locale }: { department: Department; locale: Locale }) {
-  return (
-    <span className="inline-flex max-w-full items-center gap-1.5 rounded-full bg-(--dept)/10 px-2.5 py-1 text-[11px] font-semibold leading-tight text-(--dept)">
-      <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-(--dept)" />
-      <span className="truncate">{department.name[locale]}</span>
-    </span>
   );
 }
 

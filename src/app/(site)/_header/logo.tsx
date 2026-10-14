@@ -1,10 +1,23 @@
 import Link from "next/link";
 import { useId } from "react";
 
-// Inline copy of /public/yd-logo.svg. Rendered inline (not via <img>) so the
-// wordmark can use the page's Montserrat; keep the two in sync.
-export function Logo({ className }: { className?: string }) {
+// Inline copy of /public/yd-logo.svg (`tone="light"`: /public/yd-logo-light.svg,
+// for dark backgrounds). Rendered inline (not via <img>) so the wordmark can
+// use the page's Montserrat; keep them in sync.
+const tones = {
+  dark: { ink: "#021c56", gold: "#c9a24a" },
+  light: { ink: "#ffffff", gold: "#d9b96c" },
+};
+
+export function Logo({
+  className,
+  tone = "dark",
+}: {
+  className?: string;
+  tone?: keyof typeof tones;
+}) {
   const gradientId = useId();
+  const { ink, gold } = tones[tone];
 
   return (
     <Link href="/" className="shrink-0 rounded-md">
@@ -20,7 +33,7 @@ export function Logo({ className }: { className?: string }) {
             <stop offset="1" stopColor="#0a6fd6" />
           </linearGradient>
         </defs>
-        <g fill="#021c56">
+        <g fill={ink}>
           <polygon points="2,6 25,6 52,44 34,44" />
           <polygon points="57,6 80,6 52,44 34,44" />
           <rect x="34" y="43" width="18" height="33" />
@@ -34,16 +47,16 @@ export function Logo({ className }: { className?: string }) {
           textAnchor="middle"
           style={{ fontFamily: "var(--font-montserrat), Montserrat, Inter, sans-serif" }}
         >
-          <text x="198" y="16" fontSize="8.5" fontWeight="600" letterSpacing="2.6" fill="#c9a24a">
+          <text x="198" y="16" fontSize="8.5" fontWeight="600" letterSpacing="2.6" fill={gold}>
             OʻZBEKISTON
           </text>
-          <text x="198" y="36" fontSize="17" fontWeight="700" letterSpacing="1.4" fill="#021c56">
+          <text x="198" y="36" fontSize="17" fontWeight="700" letterSpacing="1.4" fill={ink}>
             YOSHLAR
           </text>
-          <text x="198" y="56" fontSize="16" fontWeight="700" letterSpacing="1" fill="#021c56">
+          <text x="198" y="56" fontSize="16" fontWeight="700" letterSpacing="1" fill={ink}>
             DIPLOMATIYA
           </text>
-          <text x="198" y="71" fontSize="8.5" fontWeight="600" letterSpacing="2.6" fill="#c9a24a">
+          <text x="198" y="71" fontSize="8.5" fontWeight="600" letterSpacing="2.6" fill={gold}>
             MARKAZI
           </text>
         </g>
